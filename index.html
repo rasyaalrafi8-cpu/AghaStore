@@ -1,1 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock by Ran Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://img1.pixhost.to/images/10209/661577170_awang.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 5px solid #ff66b2;
+            box-shadow: 0 0 20px rgba(255, 102, 178, 0.7);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff66b2, #ff3385);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(255, 102, 178, 0.5);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #ff99cc;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 102, 178, 0.3);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+            border-color: #ff66b2;
+        }
+
+        .product-icon {
+            background: rgba(255, 102, 178, 0.2);
+            padding: 20px;
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff66b2;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #ff99cc;
+        }
+
+        .product-description {
+            color: #ccc;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #ff66b2, #ff3385);
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: linear-gradient(45deg, #ff3385, #ff0066);
+            transform: scale(1.05);
+        }
+
+        .contact-section {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: #ff99cc;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .btn-wa {
+            background: linear-gradient(45deg, #ff66b2, #ff3385);
+        }
+
+        .btn-channel {
+            background: linear-gradient(45deg, #cc0066, #ff3385);
+        }
+
+        .btn-payment {
+            background: linear-gradient(45deg, #ff66b2, #ff3385);
+            margin: 20px auto;
+            display: block;
+        }
+
+        .payment-section {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 40px;
+            display: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .payment-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .payment-method {
+            background: rgba(255, 102, 178, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid rgba(255, 102, 178, 0.3);
+        }
+
+        .payment-method h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: #ff99cc;
+        }
+
+        .payment-method h3 i {
+            font-size: 1.5rem;
+        }
+
+        .payment-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .payment-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .copy-btn {
+            background: rgba(255, 102, 178, 0.3);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 102, 178, 0.5);
+        }
+
+        .qris-container {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .qris-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 102, 178, 0.5);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(45deg, #ff66b2, #ff3385);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: linear-gradient(45deg, #ff3385, #ff0066);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .dimension-text {
+            font-size: 1.5rem;
+            text-align: center;
+            margin: 20px 0;
+            color: #ff66b2;
+            text-shadow: 0 0 10px rgba(255, 102, 178, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 80%;
+                justify-content: center;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="https://img1.pixhost.to/images/10209/661577393_awang.jpg" alt="Logo Stock by Ran Store">
+            </div>
+            <h1>STOCK BY RAN STORE</h1>
+            <p class="tagline">🔥 PRODUK - TERPERCAYA & TERJANGKAU 🔥</p>
+            
+            <div class="dimension-text"></div>
+        </header>
+        
+        <div class="products">
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Akun Mobile Legends</h3>
+                    <p class="product-description">Akun ML berkualitas dengan hero lengkap, skin eksklusif, dan rank tinggi.</p>
+                    <button class="buy-btn" onclick="buyProduct('Akun Mobile Legends')">BELI SEKARANG</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Akun Free Fire</h3>
+                    <p class="product-description">Akun FF premium dengan karakter langka, skin senjata, dan diamond.</p>
+                    <button class="buy-btn" onclick="buyProduct('Akun Free Fire')">BELI SEKARANG</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Akun Roblox</h3>
+                    <p class="product-description">Akun Roblox dengan item eksklusif, Robux, dan akses game premium.</p>
+                    <button class="buy-btn" onclick="buyProduct('Akun Roblox')">BELI SEKARANG</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-apple-alt"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Fruit di Blox Fruit</h3>
+                    <p class="product-description">Buah langka dan kuat di game Blox Fruit dengan level maksimal.</p>
+                    <button class="buy-btn" onclick="buyProduct('Fruit di Blox Fruit')">BELI SEKARANG</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">All Nokos</h3>
+                    <p class="product-description">Kumpulan nomor kosong (nokos) untuk berbagai keperluan verifikasi.</p>
+                    <button class="buy-btn" onclick="buyProduct('All Nokos')">BELI SEKARANG</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">APK Bug</h3>
+                    <p class="product-description">Aplikasi bug terbaru untuk berbagai game dengan fitur unggulan.</p>
+                    <button class="buy-btn" onclick="buyProduct('APK Bug')">BELI SEKARANG</button>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Brainrot di Sab</h3>
+                    <p class="product-description">Konten eksklusif brainrot untuk platform sosial media.</p>
+                    <button class="buy-btn" onclick="buyProduct('Brainrot di Sab')">BELI SEKARANG</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bagian Kontak -->
+        <div class="contact-section">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-buttons">
+                <a href="https://wa.me/6285177360216" class="btn btn-wa" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="https://whatsapp.com/channel/0029VbBDZK211ulNwTjThK19" class="btn btn-channel" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Saluran WhatsApp
+                </a>
+            </div>
+        </div>
+        
+        <!-- Bagian Pembayaran -->
+        <button class="btn btn-payment" id="togglePayment">
+            <i class="fas fa-credit-card"></i> Lihat Metode Pembayaran
+        </button>
+        
+        <div class="payment-section" id="paymentSection">
+            <h2 class="section-title">Metode Pembayaran</h2>
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <h3><i class="fas fa-wallet" style="color: #ff66b2;"></i> DANA</h3>
+                    <div class="payment-info">
+                        <span class="payment-number">085710154765</span>
+                        <button class="copy-btn" onclick="copyToClipboard('085710154765')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    <p>Transfer ke nomor DANA di atas dan konfirmasi via WhatsApp.</p>
+                </div>
+                
+                <div class="payment-method">
+                    <h3><i class="fab fa-google-wallet" style="color: #ff66b2;"></i> GOPAY</h3>
+                    <div class="payment-info">
+                        <span class="payment-number">085710154765</span>
+                        <button class="copy-btn" onclick="copyToClipboard('085710154765')">
+                            <i class="fas fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    <p>Transfer ke nomor GOPAY di atas dan konfirmasi via WhatsApp.</p>
+                </div>
+                
+                <div class="payment-method">
+                    <h3><i class="fas fa-qrcode" style="color: #ff66b2;"></i> QRIS</h3>
+                    <div class="qris-container">
+                        <img src="https://img1.pixhost.to/images/10209/661575983_awang.jpg" alt="QR Code Pembayaran" class="qris-image">
+                        <a href="https://img1.pixhost.to/images/10209/661575983_awang.jpg" download="QRIS-Stock-by-Ran-Store.jpg" class="download-btn">
+                            <i class="fas fa-download"></i> Download QR
+                        </a>
+                    </div>
+                    <p>Scan QRIS di atas untuk pembayaran yang lebih mudah.</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p></p>
+            <p>Terpercaya | Berkualitas | Harga Terjangkau</p>
+        </footer>
+    </div>
+
+    <script>
+        function buyProduct(productName) {
+            const message = `Halo, saya ingin membeli ${productName} dari Stock by Ran Store. Bisa info harga dan cara pembeliannya?`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/6285177360216?text=${encodedMessage}`, '_blank');
+        }
+        
+        // Toggle payment section visibility
+        document.getElementById('togglePayment').addEventListener('click', function() {
+            const paymentSection = document.getElementById('paymentSection');
+            paymentSection.classList.toggle('active');
+            
+            // Update button text
+            if (paymentSection.classList.contains('active')) {
+                this.innerHTML = '<i class="fas fa-eye-slash"></i> Sembunyikan Pembayaran';
+            } else {
+                this.innerHTML = '<i class="fas fa-credit-card"></i> Lihat Metode Pembayaran';
+            }
+        });
+        
+        // Copy to clipboard function
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert('Nomor berhasil disalin: ' + text);
+            }, function(err) {
+                console.error('Gagal menyalin teks: ', err);
+                // Fallback for older browsers
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+                alert('Nomor berhasil disalin: ' + text);
+            });
+        }
+    </script>
+</body>
+</html>
