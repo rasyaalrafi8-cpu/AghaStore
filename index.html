@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock by Ran Store</title>
+    <title>Stock by Ran Store </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -318,6 +318,26 @@
             animation: pulse 2s infinite;
         }
 
+        .sound-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 102, 178, 0.8);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sound-indicator i {
+            animation: pulse 1.5s infinite;
+        }
+
         @keyframes pulse {
             0% { opacity: 0.7; }
             50% { opacity: 1; }
@@ -346,10 +366,23 @@
             .payment-methods {
                 grid-template-columns: 1fr;
             }
+            
+            .sound-indicator {
+                top: 10px;
+                right: 10px;
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Indikator musik sedang diputar -->
+    <div class="sound-indicator">
+        <i class="fas fa-music"></i>
+        <span>Musik Aktif</span>
+    </div>
+
     <div class="container">
         <header>
             <div class="logo">
@@ -502,7 +535,50 @@
         </footer>
     </div>
 
+    <!-- Elemen Audio -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://a.top4top.io/m_3608gh3060.mp4" type="audio/mp4">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
     <script>
+        // Fungsi untuk memutar musik otomatis
+        function playBackgroundMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            
+            // Coba putar musik secara otomatis
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // Musik berhasil diputar
+                    console.log("Musik berhasil diputar otomatis");
+                }).catch(error => {
+                    // Autoplay diblokir, perlu interaksi pengguna
+                    console.log("Autoplay diblokir, menunggu interaksi pengguna");
+                    
+                    // Tampilkan pesan atau coba lagi setelah interaksi
+                    document.body.addEventListener('click', function() {
+                        audio.play().catch(e => console.log("Masih tidak bisa memutar musik:", e));
+                    }, { once: true });
+                });
+            }
+            
+            // Cegah pengguna mematikan suara
+            audio.addEventListener('volumechange', function() {
+                if (audio.muted || audio.volume === 0) {
+                    audio.muted = false;
+                    audio.volume = 0.7; // Set volume ke 70%
+                }
+            });
+            
+            // Set volume awal
+            audio.volume = 0.7;
+        }
+
+        // Panggil fungsi setelah halaman dimuat
+        window.addEventListener('load', playBackgroundMusic);
+
         function buyProduct(productName) {
             const message = `Halo, saya ingin membeli ${productName} dari Stock by Ran Store. Bisa info harga dan cara pembeliannya?`;
             const encodedMessage = encodeURIComponent(message);
